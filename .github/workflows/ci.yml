@@ -1,0 +1,30 @@
+name: CI Pipeline - Sistema Hospitalario
+
+# Disparadores: Se ejecuta cuando hay un push o pull request en main o develop
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Paso 1: Descargar el código fuente del repositorio en el contenedor
+    - name: Checkout del repositorio
+      uses: actions/checkout@v4
+
+    # Paso 2: Configurar el entorno de ejecución Node.js (versión 20)
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    # Paso 3: Ejecución de prueba unitaria del módulo de login
+    - name: Ejecutar pruebas del módulo de login
+      run: |
+        echo "Iniciando Integración Continua para Sistema Hospitalario..."
+        node src/login.test.js
+        echo "¡Pruebas unitarias completadas con éxito!"
