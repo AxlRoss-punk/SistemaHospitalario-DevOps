@@ -1,0 +1,1 @@
+﻿-- Modelo inicial de base de datos del Sistema Hospitalario
